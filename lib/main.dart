@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:voice_to_text/speechscreen.dart';
+import 'package:voice_to_text/splash_screen.dart';
 
 import 'package:voice_to_text/tts.dart';
 
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const SpeechScreen(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
       title: "Voice to Text",
       theme: ThemeData(primarySwatch: Colors.blue),

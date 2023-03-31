@@ -36,15 +36,24 @@ class _SpeechScreenState extends State<SpeechScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.sort_rounded),
+        leading: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  Icons.navigate_before_sharp,
+                  color: chatbgColor,
+                  size: 28,
+                ))),
         elevation: 0,
-        centerTitle: true,
+        backgroundColor: Colors.white,
         title: const Text(
-          "Voice Assistant",
-          style: TextStyle(fontWeight: FontWeight.w600, color: textColor),
+          "Chat GPT",
+          style: TextStyle(
+              color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
         ),
-        flexibleSpace:
-            Container(decoration: const BoxDecoration(gradient: bglightBlue)),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -70,7 +79,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 12),
                       decoration: BoxDecoration(
-                          gradient: bgColorDark,
+                          border: Border.all(color: chatbgColor, width: 4),
                           borderRadius: BorderRadius.circular(12)),
                       child: ListView.builder(
                         controller: scrollController,
@@ -94,15 +103,20 @@ class _SpeechScreenState extends State<SpeechScreen> {
                     children: [
                       Expanded(
                         child: Container(
-                          padding: const EdgeInsets.only(left: 8),
-                          decoration: const BoxDecoration(
+                          alignment: Alignment.center,
+                          height: 40,
+                          padding:
+                              const EdgeInsets.only(left: 8, top: 3, bottom: 3),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: chatbgColor, width: 2),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(12))),
+                                  const BorderRadius.all(Radius.circular(12))),
                           child: TextField(
                             focusNode: focusNode,
                             controller: controller,
                             decoration: const InputDecoration.collapsed(
-                                hintText: "Send a Message"),
+                              hintText: "Send a Message",
+                            ),
                           ),
                         ),
                       ),
@@ -258,8 +272,8 @@ class _SpeechScreenState extends State<SpeechScreen> {
               gradient: type == ChatMessageType.bot
                   ? bglightBlue
                   : const LinearGradient(colors: [
-                      Colors.white,
-                      Color.fromARGB(255, 217, 183, 183)
+                      Color.fromARGB(255, 141, 168, 241),
+                      Color.fromARGB(255, 235, 230, 230)
                     ]),
               borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(12),

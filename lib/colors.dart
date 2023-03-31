@@ -15,3 +15,6 @@ const textColor = Color(0xffFEFDFC);
 
 const bgColor = Color(0xff00A67E);
 const chatbgColor = Color.fromARGB(255, 7, 18, 67);
+const poppinsBold = "Poppins_bold";
+const poppinsRegular = "Poppins_regular";
+const poppinsSemiBold = "Poppins_semibold";
