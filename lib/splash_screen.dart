@@ -24,8 +24,8 @@ class _SplashScreenState extends State<SplashScreen> {
         nextScreen: const OnboardingScreen(),
         splashTransition: SplashTransition.rotationTransition,
         backgroundColor: Colors.white,
-        duration: 2000,
-        animationDuration: const Duration(seconds: 3),
+        duration: 3000,
+        animationDuration: const Duration(seconds: 4),
       ),
     );
   }

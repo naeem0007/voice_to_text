@@ -10,10 +10,12 @@ class TextToSpeech {
 
   static speak(String text) async {
     tts.setStartHandler(() {
+      // ignore: avoid_print
       print("TTS IS STARTED");
     });
 
     tts.setCompletionHandler(() {
+      // ignore: avoid_print
       print("COMPLETED");
     });
     await tts.awaitSpeakCompletion(true);

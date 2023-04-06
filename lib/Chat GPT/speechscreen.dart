@@ -2,11 +2,12 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart';
-import 'package:voice_to_text/api_services.dart';
-import 'package:voice_to_text/chat_model.dart';
+import 'package:voice_to_text/Chat%20GPT/api_services.dart';
+import 'package:voice_to_text/Chat%20GPT/chat_model.dart';
 import 'package:voice_to_text/colors.dart';
-import 'package:voice_to_text/threedots.dart';
-import 'package:voice_to_text/tts.dart';
+
+import 'package:voice_to_text/Chat%20GPT/tts.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SpeechScreen extends StatefulWidget {
   const SpeechScreen({super.key});
@@ -22,7 +23,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
   SpeechToText speechToText = SpeechToText();
   final List<ChatMessage> messages = [];
 
-  final TextEditingController controller = TextEditingController();
+  final TextEditingController textcontroller = TextEditingController();
   FocusNode focusNode = FocusNode();
 
   var scrollController = ScrollController();
@@ -36,17 +37,15 @@ class _SpeechScreenState extends State<SpeechScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(
-                  Icons.navigate_before_sharp,
-                  color: chatbgColor,
-                  size: 28,
-                ))),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.navigate_before_sharp,
+              color: chatbgColor,
+              size: 28,
+            )),
         elevation: 0,
         backgroundColor: Colors.white,
         title: const Text(
@@ -94,7 +93,10 @@ class _SpeechScreenState extends State<SpeechScreen> {
                       ),
                     ),
                   ),
-                  if (isTyping) const ThreeDots(),
+                  if (isTyping)
+                    const SpinKitThreeBounce(
+                      color: chatbgColor,
+                    ),
                   const SizedBox(
                     height: 5,
                   ),
@@ -113,7 +115,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
                                   const BorderRadius.all(Radius.circular(12))),
                           child: TextField(
                             focusNode: focusNode,
-                            controller: controller,
+                            controller: textcontroller,
                             decoration: const InputDecoration.collapsed(
                               hintText: "Send a Message",
                             ),
@@ -122,19 +124,19 @@ class _SpeechScreenState extends State<SpeechScreen> {
                       ),
                       IconButton(
                           onPressed: () async {
-                            if (controller.text.isNotEmpty) {
+                            if (textcontroller.text.isNotEmpty) {
                               setState(() {
                                 isTyping = true;
                                 messages.add(ChatMessage(
-                                    text: controller.text,
+                                    text: textcontroller.text,
                                     type: ChatMessageType.user));
                                 focusNode.unfocus();
                               });
 
                               var input = await ApiServices.sendMeaasage(
-                                  controller.text);
+                                  textcontroller.text);
                               input = input.trim();
-                              controller.clear();
+                              textcontroller.clear();
 
                               setState(() {
                                 isTyping = false;
@@ -146,7 +148,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
                                 TextToSpeech.speak(input);
                               });
 
-                              controller.clear();
+                              textcontroller.clear();
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
@@ -294,7 +296,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
                     speed: const Duration(milliseconds: 50))
               ],
               isRepeatingAnimation: false,
-              repeatForever: false,
+              repeatForever: true,
               totalRepeatCount: 1,
               displayFullTextOnTap: true,
             ),

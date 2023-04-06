@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:voice_to_text/Image%20Generator/img_home_screen.dart';
 import 'package:voice_to_text/colors.dart';
-import 'package:voice_to_text/speechscreen.dart';
+import 'package:voice_to_text/Chat%20GPT/speechscreen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -77,7 +78,12 @@ class OnboardingScreen extends StatelessWidget {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ImageScreen()));
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     height: 50,
@@ -89,6 +95,7 @@ class OnboardingScreen extends StatelessWidget {
                     child: const Text(
                       "Dall E",
                       style: TextStyle(
+                          fontFamily: poppinsBold,
                           color: Colors.white,
                           fontSize: 25,
                           fontWeight: FontWeight.bold),

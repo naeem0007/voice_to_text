@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:voice_to_text/colors.dart';
 import 'package:voice_to_text/splash_screen.dart';
 
-import 'package:voice_to_text/tts.dart';
+import 'package:voice_to_text/Chat%20GPT/tts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +23,10 @@ class MyApp extends StatelessWidget {
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
       title: "Voice to Text",
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+          fontFamily: poppinsSemiBold,
+          appBarTheme:
+              const AppBarTheme(color: Colors.transparent, elevation: 0.0)),
     );
   }
 }

@@ -31,6 +31,7 @@ class ApiServices {
       var msg = data['choices'][0]['text'];
       return msg;
     } else {
+      // ignore: avoid_print
       print("failed to fetch data");
     }
   }

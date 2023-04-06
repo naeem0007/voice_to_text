@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:voice_to_text/tts.dart';
+import 'package:voice_to_text/Chat%20GPT/tts.dart';
 
 class TTSScreen extends StatelessWidget {
   const TTSScreen({super.key});
